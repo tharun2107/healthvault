@@ -23,7 +23,7 @@ const FitnessTracker = () => {
   const token = localStorage.getItem('token');
 
   const fetchToday = async () => {
-    const res = await axios.get('http://localhost:5000/api/fitness', {
+      const res = await axios.get('https://healthvault-atbd.onrender.com/api/fitness', {
       headers: { Authorization: `Bearer ${token}` },
     });
     setFitness(res.data);
@@ -31,7 +31,7 @@ const FitnessTracker = () => {
   };
 
   const fetchMonthly = async () => {
-    const res = await axios.get('http://localhost:5000/api/fitness/monthly', {
+      const res = await axios.get('https://healthvault-atbd.onrender.com/api/fitness/monthly', {
       headers: { Authorization: `Bearer ${token}` },
     });
     setMonthly(res.data);
@@ -39,7 +39,7 @@ const FitnessTracker = () => {
 
   const setTarget = async () => {
     await axios.post(
-      'http://localhost:5000/api/fitness/set-target',
+        'https://healthvault-atbd.onrender.com/api/fitness/set-target',
       { target: parseInt(targetInput), useForMonth: useMonthly },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -50,7 +50,7 @@ const FitnessTracker = () => {
   const updateSteps = async () => {
     if (!steps) return;
     await axios.post(
-      'http://localhost:5000/api/fitness/update',
+        'https://healthvault-atbd.onrender.com/api/fitness/update',
       { steps: parseInt(steps) },
       { headers: { Authorization: `Bearer ${token}` } }
     );

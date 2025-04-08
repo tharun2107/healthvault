@@ -18,7 +18,7 @@ const Diet = () => {
 
   const fetchFoodLog = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/diet/${selectedDate}`, {
+      const res = await axios.get(`https://healthvault-atbd.onrender.com/api/diet/${selectedDate}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -48,7 +48,7 @@ const Diet = () => {
     if (!foodItem) return;
 
     try {
-      await axios.post('http://localhost:5000/api/diet/add', {
+      await axios.post('https://healthvault-atbd.onrender.com/api/diet/add', {
         foodItem,
         date: selectedDate
       }, {
@@ -64,7 +64,7 @@ const Diet = () => {
 
   const handleSetTarget = async () => {
     try {
-      await axios.post('http://localhost:5000/api/diet/target', {
+      await axios.post('https://healthvault-atbd.onrender.com/api/diet/target', {
         target: Number(newTarget),
         date: selectedDate,
         setForMonth

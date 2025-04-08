@@ -14,7 +14,7 @@ const MenstruationPage = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/api/menstruation', {
+        .get('https://healthvault-atbd.onrender.com/api/menstruation', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -40,7 +40,7 @@ const MenstruationPage = () => {
   const handleSubmit = async () => {
     try {
       await axios.post(
-        'http://localhost:5000/api/menstruation',
+          'https://healthvault-atbd.onrender.com/api/menstruation',
         { lastPeriodDate },
         {
           headers: {
@@ -61,7 +61,7 @@ const MenstruationPage = () => {
 
     try {
       await axios.post(
-        'http://localhost:5000/api/menstruation',
+          'https://healthvault-atbd.onrender.com/api/menstruation',
         { lastPeriodDate: moment().toISOString() },
         {
           headers: {
