@@ -12,6 +12,8 @@ const dietRoutes = require('./routes/diet');
 const sleepRoutes = require('./routes/sleeproutes');
 const notificationRoutes = require('./routes/notifications');
 const medicationRoutes = require('./routes/medication');
+const menstruationRoutes = require('./routes/menstruation');
+const fitnessRoutes = require('./routes/fitness');
 dotenv.config();
 
 const app = express();
@@ -28,6 +30,8 @@ app.use('/api/diet', dietRoutes);
 app.use('/api/sleep', sleepRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/medication', medicationRoutes);
+app.use('/api/menstruation', menstruationRoutes);
+app.use('/api/fitness', fitnessRoutes);
 // DB connection
 
 mongoose.connect(process.env.MONGO_URI, {

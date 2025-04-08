@@ -8,6 +8,8 @@ import Dashboard from './pages/Dashboard';
 import Diet from './pages/Diet';
 import SleepPage from './pages/SleepPage'
 import Meditation from './pages/MedicationPage';
+import MenstruationPage from './pages/MenstruationPage';
+import FitnessTracker from './pages/FitnessTracker';
 export default function App() {
   return (
     <>
@@ -20,6 +22,9 @@ export default function App() {
         <Route path="/diet" element={<Diet />} />
         <Route path="/sleep" element={<SleepPage />} />
         <Route path="/medication" element={<Meditation />} />
+        <Route path="/menstruation" element={<MenstruationPage />} />
+        <Route path="/fitness" element={<FitnessTracker />} />
+        <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
       <Footer />
     </>
