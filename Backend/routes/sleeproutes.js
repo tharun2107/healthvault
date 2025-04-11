@@ -50,4 +50,23 @@ router.get('/by-date/:date', verifyToken, async (req, res) => {
   }
 });
 
+
+// In your /by-date route
+router.get('/by-date/:date', verifyToken, async (req, res) => {
+  try {
+    const date = moment(req.params.date).startOf('day').toDate();
+    const entry = await Sleep.findOne({ userId: req.user.id, date });
+    
+    // Return default structure if no entry found
+    const responseData = entry || { 
+      wakeTime: '07:00', 
+      sleepTime: '22:00',
+      date: req.params.date
+    };
+    
+    res.status(200).json(responseData);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to get sleep schedule' });
+  }
+});
 module.exports = router;

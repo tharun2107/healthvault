@@ -53,22 +53,64 @@ router.post('/update', auth, async (req, res) => {
 //   res.json(data);
 // });
 router.post('/set-target', auth, async (req, res) => {
-    const { target, fixedMonthly } = req.body;
-    const today = moment().format('YYYY-MM-DD');
-  
-    console.log('USER:', req.user); // 🧪 Test here
-  
-    let data = await Fitness.findOne({ userId: req.user._id, date: today });
-  
-    if (!data) {
-      data = await Fitness.create({ userId: req.user._id, date: today, target, fixedMonthly });
-    } else {
-      data.target = target;
-      data.fixedMonthly = fixedMonthly;
-      await data.save();
-    }
-    res.json(data);
-  });
+  try {
+      const { target, useForMonth, date } = req.body;
+      const targetDate = moment(date || new Date());
+
+      if (useForMonth) {
+          // Handle monthly target
+          const startOfMonth = targetDate.clone().startOf('month');
+          const endOfMonth = targetDate.clone().endOf('month');
+
+          // Update/create targets for each day in month
+          for (let day = startOfMonth.clone(); day <= endOfMonth; day.add(1, 'day')) {
+              const dateStr = day.format('YYYY-MM-DD');
+              let data = await Fitness.findOne({ 
+                  userId: req.user._id, 
+                  date: dateStr 
+              });
+
+              if (!data) {
+                  await Fitness.create({ 
+                      userId: req.user._id, 
+                      date: dateStr, 
+                      target: parseInt(target),
+                      fixedMonthly: true
+                  });
+              } else {
+                  data.target = parseInt(target);
+                  data.fixedMonthly = true;
+                  await data.save();
+              }
+          }
+          return res.json({ message: 'Monthly target updated successfully' });
+      } else {
+          // Handle single day target
+          const dateStr = targetDate.format('YYYY-MM-DD');
+          let data = await Fitness.findOne({ 
+              userId: req.user._id, 
+              date: dateStr 
+          });
+
+          if (!data) {
+              data = await Fitness.create({ 
+                  userId: req.user._id, 
+                  date: dateStr, 
+                  target: parseInt(target),
+                  fixedMonthly: false
+              });
+          } else {
+              data.target = parseInt(target);
+              data.fixedMonthly = false;
+              await data.save();
+          }
+          return res.json(data);
+      }
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server error' });
+  }
+});
   
 // Get monthly data
 router.get('/monthly', auth, async (req, res) => {

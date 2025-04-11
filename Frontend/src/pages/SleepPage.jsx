@@ -23,7 +23,9 @@ export default function SleepPage() {
       });
       toast.success('Sleep schedule saved!');
     } catch (err) {
-      toast.error('Failed to save sleep schedule');
+      toast.error('⚠️ Failed to save sleep schedule', {
+        position: "top-center"
+      });
     }
   };
 
