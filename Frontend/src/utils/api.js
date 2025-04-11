@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 const API = axios.create({
-  baseURL: 'https://healthvault-atbd.onrender.com/api',
+  baseURL: 'http://localhost:5000/api',
   });
   
   // Add interceptor to attach token automatically
@@ -20,7 +20,7 @@ export const fetchMedications = () => API.get('/medication');
 export const markTabletAsTaken = async (payload) => {
     console.log('Payload:', payload);
     const token = localStorage.getItem('token');
-  return axios.post('https://healthvault-atbd.onrender.com/api/medication/mark-taken', payload, {
+  return axios.post('http://localhost:5000/api/medication/mark-taken', payload, {
       headers: { Authorization: `Bearer ${token}` }
     });
   };

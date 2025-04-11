@@ -166,3 +166,72 @@
     margin: 10px 0;
   }
 }
+.tips-card {
+  transition: transform 0.2s;
+}
+
+.tips-card:hover {
+  transform: translateY(-5px);
+}
+
+.list-group-item {
+  border: none;
+  padding: 1rem 1.25rem;
+ 
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.list-group-item:nth-child(odd) {
+  background-color: #f8f9fa;
+}
+
+/* Custom Styles */
+.hover-effect {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-effect:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.hero-section {
+  background-attachment: fixed;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    background-attachment: scroll;
+  }
+  
+  .card-header h5 {
+    font-size: 1.1rem;
+  }
+  
+  .form-check-label {
+    font-size: 0.9rem;
+  }
+}
+
+.progress-card {
+  min-height: 400px;
+}
+
+.badge.bg-success {
+  font-size: 0.9rem;
+  padding: 0.5em 0.75em;
+}
+
+.card-header h5 {
+  font-size: 1.25rem;
+}
+
+.form-select {
+  max-width: 150px;
+}
