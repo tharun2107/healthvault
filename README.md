@@ -44,8 +44,8 @@ healthvault/
 
 ## 🚀 Live Demo
 
-> *Coming soon or deployed at:*
-> [🔗 healthvault.vercel.app](https://healthvault.vercel.app) or your deployment domain.
+> *deployed at:*
+>[https://healthvaultt.netlify.app/]
 
 ---
 
